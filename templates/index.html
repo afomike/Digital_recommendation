@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Device Recommendation system for specific Job</title>
+    <head>
+        <!-- ... Other meta tags ... -->
+        <link href="https://cdn.jsdelivr.net/npm/font-awesome@5.15.3/css/all.min.css" rel="stylesheet">
+        <!-- ... Other stylesheet links ... -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <!-- ... Other meta tags ... -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- ... Other stylesheet links ... -->
+ 
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <style>
+   /* Custom styles */
+
+   *{
+    margin: 0;
+    padding: 0;
+   }
+body {
+    background-color: #f9f9f9;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: url(recommend.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container {
+    /* opacity: 50; */
+    max-width: 800px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #0e0415;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #2c9f06;
+}
+.icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+.device-button {
+    background-color: #b482d6;
+}
+.device-button.active {
+    background-color: #2c9f06;
+}
+.step {
+    opacity: 0;
+    position: absolute;
+    width: 60%;
+    transition: opacity 0.3s ease;
+    z-index: 1; /* Ensure dropdowns appear above other elements */
+}
+.step.active {
+    opacity: 1;
+    z-index: 2; /* Increase z-index to make the active step appear above */
+}
+.confirmation {
+    color: #D0576D;
+    font-weight: bold;
+}
+
+@media (max-width: 767px) {
+    /* Your mobile-specific styles here */
+    .container {
+        max-width: 100%;
+        padding: 10px;
+        min-height: 210px;
+    }
+    .section {
+        margin-bottom: 20px;
+    }
+    .btn {
+        padding: 6px 12px;
+    }
+
+    .step {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    transition: opacity 0.3s ease;
+    z-index: 1; /* Ensure dropdowns appear above other elements */
+}
+    /* Add more styles as needed */
+}
+
+    </style>
+</head>
+<body>
+    <!-- <img src="recommend.gif" alt="gif" width="col-12"  height="1000" id="recommnedGif"> -->
+    <div class="container opacity-95">
+        <h1 class="text-3xl font-semibold mb-6 text-center">Digital Device Recommendation system for specific Job</h1>
+        
+        <div class="section">
+            <h2 class="text-xl font-semibold mb-4">Select Device Type</h2>
+            <div class="flex gap-4 justify-center">
+                <button id="laptopBtn" class="btn device-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-laptop icon" viewBox="0 0 16 16">
+                        <path d="M0 11.5a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+                        <path d="M0 3.5a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+                        <path d="M0 0v15.5a.5.5 0 0 1-1 0V0a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                    Laptop
+                </button>
+               
+                <button id="phoneBtn" class="btn device-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-phone icon" viewBox="0 0 16 16">
+                        <path d="M10 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h4zM5.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5V1a.5.5 0 0 0-.5-.5h-5z"/>
+                    </svg>
+                    Phone
+                </button>
+            </div>
+        </div>
+        
+        <div class="section step" id="stepJob">
+            <h2 class="text-xl font-semibold mb-4">Select Job Description</h2>
+            <select id="jobDescription" class="w-full p-3 bg-gray-200 outline-none border rounded">
+                <option value=" Business/Professional">Web Developer</option>
+                <option value=" Gaming">Graphic Designer</option>
+                <option value=" Business/Professional">Data Analyst</option>
+                <option value=" Business/Professional">Software Engineer</option>
+                <option value=" Multimedia/Entertainment">Content Writer</option>
+                <option value=" Business/Professional">Marketing Manager</option>
+                <option value=" Business/Professional">Network Administrator</option>
+                <option value=" Business/Professional">Financial Analyst</option>
+                <option value=" Budget Friendly">Teacher</option>
+                <option value=" Budget Friendly">Nurse</option>
+                <option value=" Budget Friendly">Sales Representative</option>
+                <option value=" Home/Everyday use">Chef</option>
+                <option value=" Gaming">Architect</option>
+                <option value=" Budget Friendly">Doctor</option>
+                <option value=" Budget Friendly">Lawyer</option>
+                <option value=" Home/Everyday use">Fitness Trainer</option>
+                <option value=" Multimedia/Entertainment">Social Media Manager</option>
+                <option value=" Home/Everyday use">Event Planner</option>
+                <option value=" Creative/Design">Photographer</option>
+                <option value=" Gaming">Gamer</option>
+                <!-- Add more job options as needed -->
+            </select>
+            
+            <button id="nextStepJob" class="btn mt-4">
+                Next <i class=" bi bi-arrow-right-short"></i>
+            </button>
+        </div>
+        
+        <div class="section step" id="stepOS">
+            <h2 class="text-xl font-semibold mb-4">Select Operating System</h2>
+            <select id="operatingSystem" class="w-full bg-gray-200 outline-none p-3 border rounded">
+                <option value="Windows">Windows</option>
+                <option value="MacOS">macOS</option>
+                <!-- <option value="ios">iOS</option> -->
+                <option value="ChromeOS">Android</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button id="prevStepOS" class="btn mt-4">
+                <i class=" bi bi-arrow-left-short"></i> Previous
+            </button>
+            <button id="nextStepOS" class="btn mt-4">
+                Next  <i class=" bi bi-arrow-right-short"></i>
+            </button>
+        </div>
+        
+        <div class="section step" id="stepBudget">
+            <h2 class="text-xl font-semibold mb-4">Enter Minimum Budget</h2>
+            <input id="budgetInput" type="number" class="w-full p-3 bg-gray-200 outline-none border rounded" placeholder="Enter budget">
+            <button id="prevStepBudget" class="btn mt-4">
+                <i class=" bi bi-arrow-left-short"></i> Previous
+            </button>
+            <button id="confirmBtn" class="btn mt-4">
+                Confirm  <i class="bi bi-check"></i>
+               
+            </button>
+        </div>
+        
+        <div class="section step" id="stepConfirm">
+            <h2 class="text-xl font-semibold mb-4">Confirmation</h2>
+            <p class="mb-6">You've chosen:</p>
+            <p class="confirmation" id="confirmDevice"></p>
+            <p class="confirmation" id="confirmJob"></p>
+            <p class="confirmation" id="confirmOS"></p>
+            <p class="confirmation">Budget: &#8358;<span id="confirmBudget"></span></p>
+            <p>Is this information correct?</p>
+            <button id="prevStepConfirm" class="btn mt-4">
+                <i class=" bi bi-arrow-left-short"></i>  Previous
+            </button>
+            <button id="getRecommendationBtn" class="btn mt-4">
+                Show Recommendation <i class="bi bi-check"></i>
+            </button>
+        </div>
+        
+        <div class="section step" id="stepResult">
+            <h2 class="text-xl font-semibold mb-4">See Recommendations</h2>
+            <div id="recommendations" class="rounded p-4 bg-gray-100">
+                <!-- Recommendations will be dynamically added here -->
+            </div>
+            <button id="restartBtn" class="btn mt-4">
+                <i class="bi bi-arrow-counterclockwise"></i> Restart
+            </button>
+        </div>
+    </div>
+    
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Initialize steps
+        const steps = ['stepJob', 'stepOS', 'stepBudget', 'stepConfirm', 'stepResult'];
+        let currentStep = 0;
+        let selectedDevice = '';
+        let selectedJob = '';
+        let selectedOS = '';
+        let selectedBudget = 0;
+
+        // Show the current step
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                if (index === stepIndex) {
+                   $ ('#' + step).addClass('active');
+                } else {
+                    $('#' + step).removeClass('active');
+                }
+            });
+        }
+
+        // Move to the next step
+        function nextStep() {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        // Move to the previous step
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        // Step transitions
+        $('#nextStepJob').click(function() {
+            selectedDevice = $('#laptopBtn').hasClass('active')
+                ? 'Laptop'
+                : $('#tabletBtn').hasClass('active')
+                ? 'Tablet'
+                : 'Phone';
+            nextStep();
+        });
+        $('#prevStepOS').click(function() {
+            prevStep();
+        });
+        $('#nextStepOS').click(function() {
+            selectedJob = $('#jobDescription').val();
+            nextStep();
+        });
+        $('#prevStepBudget').click(function() {
+            prevStep();
+        });
+        $('#confirmBtn').click(function() {
+            selectedOS = $('#operatingSystem').val();
+            selectedBudget = $('#budgetInput').val();
+            $('#confirmDevice').text(`Device: ${selectedDevice}`);
+            $('#confirmJob').text(`Job: ${selectedJob}`);
+            $('#confirmOS').text(`OS: ${selectedOS}`);
+            $('#confirmBudget').text(`${selectedBudget}`);
+            nextStep();
+        });
+        $('#prevStepConfirm').click(function() {
+            prevStep();
+        });
+        $(document).ready(function() {
+
+    $('#getRecommendationBtn').click(function() {
+        // Send the selected data to the server using AJAX
+        $.ajax({
+            url: '/',
+            method: 'POST',
+            data: {
+                selectedDevice: selectedDevice,
+                selectedJob: selectedJob,
+                selectedOS: selectedOS,
+                selectedBudget: selectedBudget
+            },
+            success: function(response) {
+                // Handle server response if needed
+                console.log('Data sent to server:', response);
+                // Assuming the server sends back a 'result' array, you can loop through it and display in recommendations
+                const recommendationItems = response.result.map(option => `<h4>${option}</h4>`).join('');
+                const recommendation = `
+                    <div class="bg-white p-4 rounded shadow mb-2">
+                        ${recommendationItems}
+                    </div>
+                `;
+                $('#recommendations').html(recommendation);
+                nextStep();
+            },
+            error: function(error) {
+                // Handle error if needed
+                console.error('Error sending data to server');
+            }
+        });
+    });
+    // Restart
+    $('#restartBtn').click(function() {
+                currentStep = 0;
+                showStep(currentStep);
+            });
+
+            // Initial step
+            showStep(currentStep);
+        
+    });
+
+       
+    });
+
+    
+    // Device type selection with active class
+    $('.device-button').click(function() {
+        $('.device-button').removeClass('active');
+        $(this).addClass('active');
+    });
+</script>
+</body>
+</html>
+
+    </script>
+</body>
+</html>
